@@ -35,7 +35,7 @@ Prerequisite: a working Ruby 3.2.0 toolchain and a reachable PostgreSQL instance
 bin/rails server
 ```
 
-Routes (`config/routes.rb`): `resources :blogs`. No `root` route declared.
+Routes (`config/routes.rb`): `root "blogs#index"` and `resources :blogs`.
 
 ## Rails / Rake
 
@@ -44,7 +44,12 @@ Routes (`config/routes.rb`): `resources :blogs`. No `root` route declared.
 
 ## Tests
 
-No checked-in test suite. `test/` and `spec/` are absent. `rails/test_unit/railtie` is commented out in `config/application.rb`. There is no documented test command.
+```sh
+bin/rails test
+bin/rails test test/integration/
+```
+
+Checked-in tests use Rails Minitest under `test/`, with integration coverage in `test/integration/`.
 
 ## Lint
 
@@ -61,4 +66,3 @@ No lint tool, config, or gem declared in `Gemfile`/`Gemfile.lock`. There is no d
 
 - README is the default Rails placeholder; it does not document install/build/test/lint/run.
 - No CI configuration is checked in.
-- No application root route (`root` is commented out in `config/routes.rb`).
