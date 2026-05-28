@@ -1,4 +1,5 @@
 class BlogsController < ApplicationController
+  before_action :require_blog_admin, only: %i[ new create edit update destroy ]
   before_action :set_blog, only: %i[ show edit update destroy ]
 
   # GET /blogs or /blogs.json
@@ -67,4 +68,17 @@ class BlogsController < ApplicationController
     def blog_params
       params.require(:blog).permit(:title, :body)
     end
+
+    def require_blog_admin
+      head :not_found unless blog_admin?
+    end
+
+    def blog_admin?
+      expected = ENV["BLOG_ADMIN_TOKEN"].to_s
+      return false if expected.empty?
+
+      provided = request.headers["X-Blog-Admin-Token"].to_s
+      ActiveSupport::SecurityUtils.secure_compare(provided, expected)
+    end
+    helper_method :blog_admin?
 end
