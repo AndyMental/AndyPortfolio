@@ -13,6 +13,13 @@
   </head>
 
   <body>
+    <header>
+      <nav aria-label="Main navigation">
+        <%= link_to "AndyPortfolio", root_path, class: "site-title" %>
+        <%= link_to "Blog", blogs_path %>
+      </nav>
+    </header>
+
     <main>
       <%= yield %>
     </main>
