@@ -29,11 +29,39 @@ class BlogAdminGateTest < ActionDispatch::IntegrationTest
     assert_no_match(/New blog/, response.body)
   end
 
+  test "anonymous index presents posts as read-only articles" do
+    get blogs_path
+    assert_response :success
+
+    assert_select "header nav a", text: "AndyPortfolio"
+    assert_select "article.blog-card h2 a", text: @blog.title
+    assert_select "a[aria-label=?]", "Read #{@blog.title}"
+  end
+
+  test "anonymous index renders empty state" do
+    Blog.delete_all
+
+    get blogs_path
+    assert_response :success
+
+    assert_select "article.empty-state h2", text: "No posts yet"
+    assert_no_match(/New blog/, response.body)
+  end
+
   test "anonymous show hides Edit and Destroy controls" do
     get blog_path(@blog)
     assert_response :success
     assert_no_match(/Edit this blog/, response.body)
     assert_no_match(/Destroy this blog/, response.body)
+  end
+
+  test "anonymous show has blog navigation and article body" do
+    get blog_path(@blog)
+    assert_response :success
+
+    assert_select "a", text: "Back to blog"
+    assert_select "article.blog-post h1", text: @blog.title
+    assert_select "article.blog-post .blog-body p", text: "hello"
   end
 
   test "anonymous write actions return 404" do
