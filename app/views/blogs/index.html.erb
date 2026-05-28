@@ -4,24 +4,31 @@
   <p style="color: green" role="status" aria-live="polite"><%= notice %></p>
 <% end %>
 
-<h1>Blogs</h1>
+<section class="page-header">
+  <p class="eyebrow">Andy Mental</p>
+  <h1>Blog</h1>
+  <p>Notes and updates from the Rails-backed portfolio companion.</p>
 
-<% if @blogs.empty? %>
-  <section role="status" aria-live="polite">
-    <h2>No posts yet</h2>
-    <p>There aren't any blog posts to read right now. Check back soon.</p>
-  </section>
-<% else %>
-  <div id="blogs">
+  <% if blog_admin? %>
+    <p><%= link_to "New blog", new_blog_path, class: "button" %></p>
+  <% end %>
+</section>
+
+<section id="blogs" class="blog-list" aria-label="Blog posts">
+  <% if @blogs.any? %>
     <% @blogs.each do |blog| %>
-      <%= render blog %>
-      <p>
-        <%= link_to "Show this blog", blog %>
-      </p>
+      <article class="blog-card">
+        <h2><%= link_to blog.title, blog %></h2>
+        <div class="blog-body">
+          <%= sanitize blog.body, tags: %w[p br strong em b i ul ol li a], attributes: %w[href title rel target] %>
+        </div>
+        <p><%= link_to "Read post", blog, aria: { label: "Read #{blog.title}" } %></p>
+      </article>
     <% end %>
-  </div>
-<% end %>
-
-<% if blog_admin? %>
-  <%= link_to "New blog", new_blog_path %>
-<% end %>
+  <% else %>
+    <article class="empty-state">
+      <h2>No posts yet</h2>
+      <p>Check back soon for public updates.</p>
+    </article>
+  <% end %>
+</section>
