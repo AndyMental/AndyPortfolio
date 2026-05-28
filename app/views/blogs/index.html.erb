@@ -1,4 +1,6 @@
-<p style="color: green"><%= notice %></p>
+<% if notice.present? %>
+  <p style="color: green" role="status" aria-live="polite"><%= notice %></p>
+<% end %>
 
 <h1>Blogs</h1>
 
