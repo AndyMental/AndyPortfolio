@@ -26,5 +26,7 @@ services:
         value: "1"
       - key: RAILS_MASTER_KEY
         sync: false
+      - key: BLOG_ADMIN_TOKEN
+        sync: false
       - key: SECRET_KEY_BASE
         generateValue: true
