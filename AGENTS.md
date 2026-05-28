@@ -35,7 +35,7 @@ Prerequisite: a working Ruby 3.2.0 toolchain and a reachable PostgreSQL instance
 bin/rails server
 ```
 
-Routes (`config/routes.rb`): `resources :blogs`. No `root` route declared.
+Routes (`config/routes.rb`): `root "blogs#index"` and `resources :blogs`.
 
 ## Rails / Rake
 
@@ -61,4 +61,3 @@ No lint tool, config, or gem declared in `Gemfile`/`Gemfile.lock`. There is no d
 
 - README is the default Rails placeholder; it does not document install/build/test/lint/run.
 - No CI configuration is checked in.
-- No application root route (`root` is commented out in `config/routes.rb`).
