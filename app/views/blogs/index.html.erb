@@ -13,4 +13,6 @@
   <% end %>
 </div>
 
-<%= link_to "New blog", new_blog_path %>
+<% if blog_admin? %>
+  <%= link_to "New blog", new_blog_path %>
+<% end %>
