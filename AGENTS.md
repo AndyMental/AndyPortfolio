@@ -1,0 +1,64 @@
+# AGENTS.md — AndyPortfolio
+
+Repo-local guidance for coding agents. Only commands and conventions observable in this repository are documented here; do not invent toolchain steps.
+
+## Stack (detected from repo files)
+
+- Ruby on Rails application.
+- Ruby version pinned to `3.2.0` (see `.ruby-version`).
+- Rails `~> 7.0.4`, Sprockets, importmap-rails, Turbo, Stimulus, Jbuilder (see `Gemfile`, `Gemfile.lock`).
+- Web server: Puma `~> 5.0`.
+- Database: PostgreSQL (`pg ~> 1.1`). Development DB name `AndyPortfolio_development` (see `config/database.yml`).
+- Cache/queue: Redis `~> 4.0` declared.
+- Boot caching: `bootsnap`.
+- Dev/test gems: `debug`, `ffaker`. Dev-only: `web-console`.
+
+## Setup
+
+```sh
+bin/setup
+```
+
+`bin/setup` runs (in order, observable in `bin/setup`):
+
+1. `gem install bundler --conservative`
+2. `bundle check` → `bundle install` on miss
+3. `bin/rails db:prepare`
+4. `bin/rails log:clear tmp:clear`
+5. `bin/rails restart`
+
+Prerequisite: a working Ruby 3.2.0 toolchain and a reachable PostgreSQL instance configured per `config/database.yml`.
+
+## Run
+
+```sh
+bin/rails server
+```
+
+Routes (`config/routes.rb`): `resources :blogs`. No `root` route declared.
+
+## Rails / Rake
+
+- `bin/rails <command>` — Rails CLI (`bin/rails`).
+- `bin/rake <task>` — Rake (`bin/rake`, `Rakefile`).
+
+## Tests
+
+No checked-in test suite. `test/` and `spec/` are absent. `rails/test_unit/railtie` is commented out in `config/application.rb`. There is no documented test command.
+
+## Lint
+
+No lint tool, config, or gem declared in `Gemfile`/`Gemfile.lock`. There is no documented lint command.
+
+## Conventions
+
+- Frontend assets via `importmap-rails` and Sprockets; no Node/webpack toolchain in repo.
+- ERB views under `app/views/`; layouts in `app/views/layouts/`.
+- Database migrations under `db/migrate/`; schema in `db/schema.rb`.
+- Default Rails directory layout (`app/`, `config/`, `db/`, `lib/`, `public/`, `vendor/`).
+
+## Known gaps
+
+- README is the default Rails placeholder; it does not document install/build/test/lint/run.
+- No CI configuration is checked in.
+- No application root route (`root` is commented out in `config/routes.rb`).
