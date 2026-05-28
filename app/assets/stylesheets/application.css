@@ -13,3 +13,55 @@
  *= require_tree .
  *= require_self
  */
+
+header nav {
+  align-items: center;
+}
+
+.site-title {
+  font-weight: 700;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+}
+
+.blog-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.blog-card,
+.empty-state,
+.blog-post {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.blog-card h2,
+.blog-post h1,
+.empty-state h2 {
+  margin-top: 0;
+}
+
+.blog-body > :first-child {
+  margin-top: 0;
+}
+
+.blog-body > :last-child {
+  margin-bottom: 0;
+}
+
+.admin-actions {
+  margin-top: 2rem;
+}
