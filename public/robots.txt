@@ -1,1 +1,5 @@
 # See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+# TODO: replace relative Sitemap line with absolute URL once production host is pinned.
+User-agent: *
+Allow: /
+Sitemap: /sitemap.xml
