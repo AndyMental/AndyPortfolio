@@ -4,6 +4,13 @@
     <title><%= page_title %></title>
     <meta name="description" content="Andy Mental's portfolio — a Rails-backed blog companion to the andy-portfolio.com showcase.">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= tag.meta property: "og:title", content: page_title %>
+    <%= tag.meta property: "og:description", content: page_description %>
+    <%= tag.meta property: "og:type", content: og_type %>
+    <%= tag.meta property: "og:url", content: request.original_url %>
+    <%= tag.meta name: "twitter:card", content: "summary" %>
+    <%= tag.meta name: "twitter:title", content: page_title %>
+    <%= tag.meta name: "twitter:description", content: page_description %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
