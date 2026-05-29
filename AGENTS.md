@@ -55,6 +55,36 @@ Checked-in tests use Rails Minitest under `test/`, with integration coverage in 
 
 No lint tool, config, or gem declared in `Gemfile`/`Gemfile.lock`. There is no documented lint command.
 
+## Build (production assets)
+
+```sh
+bin/render-build.sh
+```
+
+`bin/render-build.sh` runs (in order):
+
+1. `bundle install`
+2. `bundle exec rails assets:precompile`
+3. `bundle exec rails assets:clean`
+
+This is the build command referenced by `render.yaml` (`buildCommand: ./bin/render-build.sh`).
+
+## Deploy / Deploy-preflight
+
+Render-managed deploy is declared in `render.yaml`:
+
+- `buildCommand: ./bin/render-build.sh`
+- `preDeployCommand: bundle exec rails db:migrate`
+- `startCommand: bundle exec puma -C config/puma.rb`
+- `healthCheckPath: /`
+
+Required env vars (from `render.yaml`): `DATABASE_URL` (from `andyportfolio-db`), `RAILS_ENV=production`, `RAILS_LOG_TO_STDOUT=1`, `RAILS_SERVE_STATIC_FILES=1`, `RAILS_MASTER_KEY` (manual), `BLOG_ADMIN_TOKEN` (manual), `SECRET_KEY_BASE` (generated).
+
+Deploy-preflight references:
+
+- `docs/deployment-render.md` — Render blueprint setup and required env vars.
+- `docs/qa-smoke-checklist.md` — local and live `curl` smoke probes (root, `/blogs`, anonymous write-denial checks).
+
 ## Conventions
 
 - Frontend assets via `importmap-rails` and Sprockets; no Node/webpack toolchain in repo.
