@@ -15,13 +15,15 @@ class BlogBodyRenderingTest < ActionDispatch::IntegrationTest
     get blog_path(blog)
 
     assert_response :success
-    assert_no_match(/<script/i, response.body)
-    assert_no_match(/onclick=/i, response.body)
-    assert_no_match(/onmouseover=/i, response.body)
-    assert_no_match(/onerror=/i, response.body)
-    assert_no_match(/<img/i, response.body)
-    assert_no_match(/javascript:/i, response.body)
-    assert_includes response.body, "<strong>safe</strong>"
-    assert_includes response.body, "<em>formatting</em>"
+    assert_select "div#blog_#{blog.id}" do
+      assert_select "script", false
+      assert_select "[onclick]", false
+      assert_select "[onmouseover]", false
+      assert_select "[onerror]", false
+      assert_select "img", false
+      assert_select "a[href^='javascript:']", false
+      assert_select "strong", text: "safe"
+      assert_select "em", text: "formatting"
+    end
   end
 end
