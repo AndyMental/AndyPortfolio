@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <title>AndyPortfolio</title>
-    <meta name="description" content="Andy Mental's portfolio — a Rails-backed blog companion to the andy-portfolio.com showcase.">
+    <meta name="description" content="<%= yield(:meta_description).presence || default_meta_description %>">
+    <meta property="og:title" content="<%= page_title %>">
+    <meta property="og:description" content="<%= yield(:meta_description).presence || default_meta_description %>">
+    <meta property="og:type" content="website">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>

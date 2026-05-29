@@ -1,3 +1,6 @@
+<% blog_excerpt = strip_tags(@blog.body.to_s).squish %>
+<% content_for :meta_description, blog_excerpt.presence ? blog_excerpt.truncate(160) : "Blog post on AndyPortfolio by Andy Mental." %>
+
 <% if notice.present? %>
   <p style="color: green" role="status" aria-live="polite"><%= notice %></p>
 <% end %>
