@@ -85,6 +85,16 @@ Deploy-preflight references:
 - `docs/deployment-render.md` — Render blueprint setup and required env vars.
 - `docs/qa-smoke-checklist.md` — local and live `curl` smoke probes (root, `/blogs`, anonymous write-denial checks).
 
+## CI
+
+GitHub Actions workflow at `.github/workflows/rails.yml` (`name: Rails CI`):
+
+- Trigger: `pull_request`.
+- Runner: `ubuntu-latest`.
+- Service container: `postgres:16` (user/password `postgres`, db `andyportfolio_test`) exposed on `localhost:5432`.
+- Job env: `RAILS_ENV=test`, `DATABASE_URL=postgres://postgres:postgres@localhost:5432/andyportfolio_test`.
+- Steps (in order): `actions/checkout@v4`, `ruby/setup-ruby@v1`, `bundle install --jobs 4 --retry 3 --full-index`, `bin/rails db:prepare`, `bin/rails test`, then `bundle exec rails assets:precompile` under `RAILS_ENV=production` with `SECRET_KEY_BASE=dummy` and `RAILS_SERVE_STATIC_FILES=1`.
+
 ## Conventions
 
 - Frontend assets via `importmap-rails` and Sprockets; no Node/webpack toolchain in repo.
@@ -95,4 +105,3 @@ Deploy-preflight references:
 ## Known gaps
 
 - README is the default Rails placeholder; it does not document install/build/test/lint/run.
-- No CI configuration is checked in.
