@@ -2,13 +2,14 @@ require "test_helper"
 
 class RobotsAndSitemapTest < ActionDispatch::IntegrationTest
   test "GET /robots.txt returns 200 text/plain with required directives" do
+    host! "example.com"
     get "/robots.txt"
     assert_response :success
     assert_match %r{text/plain}, @response.media_type
     body = @response.body
     assert_includes body, "User-agent: *"
     assert_includes body, "Allow: /"
-    assert_includes body, "Sitemap:"
+    assert_match %r{^Sitemap: https?://example\.com/sitemap\.xml$}, body
   end
 
   test "GET /sitemap.xml returns 200 application/xml listing home, blogs index, and each Blog" do
