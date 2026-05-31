@@ -70,7 +70,12 @@ class BlogsController < ApplicationController
     end
 
     def require_blog_admin
-      head :not_found unless blog_admin?
+      unless blog_admin?
+        if ENV["BLOG_ADMIN_TOKEN"].to_s.empty?
+          Rails.logger.warn "Admin action attempted but BLOG_ADMIN_TOKEN is not set. Actions will return 404."
+        end
+        head :not_found
+      end
     end
 
     def blog_admin?
