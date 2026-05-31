@@ -34,7 +34,14 @@ class BlogAdminGateTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select "header nav a", text: "AndyPortfolio"
-    assert_select "article.blog-card h2 a", text: @blog.title
+    assert_select "nav[aria-label=Breadcrumb]" do
+      assert_select "a", text: "Home"
+      assert_select "li", text: "Blog"
+    end
+    assert_select "article.blog-card" do
+      assert_select "h2 a", text: @blog.title
+      assert_select "time", text: @blog.created_at.strftime("%B %d, %Y")
+    end
     assert_select "a[aria-label=?]", "Read #{@blog.title}"
   end
 
@@ -59,9 +66,16 @@ class BlogAdminGateTest < ActionDispatch::IntegrationTest
     get blog_path(@blog)
     assert_response :success
 
-    assert_select "a", text: "Back to blog"
-    assert_select "article.blog-post h1", text: @blog.title
-    assert_select "article.blog-post .blog-body p", text: "hello"
+    assert_select "nav[aria-label=Breadcrumb]" do
+      assert_select "a", text: "Home"
+      assert_select "a", text: "Blog"
+      assert_select "li", text: @blog.title
+    end
+    assert_select "article.blog-post" do
+      assert_select "h1", text: @blog.title
+      assert_select "time", text: @blog.created_at.strftime("%B %d, %Y")
+      assert_select ".blog-body p", text: "hello"
+    end
   end
 
   test "anonymous write actions return 404" do

@@ -1,0 +1,11 @@
+<nav aria-label="Breadcrumb" class="breadcrumbs">
+  <ol>
+    <li><%= link_to "Home", root_path %></li>
+    <% if action_name == "index" %>
+      <li>Blog</li>
+    <% else %>
+      <li><%= link_to "Blog", blogs_path %></li>
+      <li aria-current="page"><%= @blog.title %></li>
+    <% end %>
+  </ol>
+</nav>
