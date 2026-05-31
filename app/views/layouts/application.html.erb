@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8">
     <title>AndyPortfolio</title>
     <meta name="description" content="Andy Mental's portfolio — a Rails-backed blog companion to the andy-portfolio.com showcase.">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -16,5 +17,9 @@
     <main>
       <%= yield %>
     </main>
+
+    <footer>
+      <p>&copy; <%= Time.current.year %> Andy Mental. Built with Rails.</p>
+    </footer>
   </body>
 </html>
