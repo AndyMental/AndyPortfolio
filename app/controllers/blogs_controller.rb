@@ -12,7 +12,7 @@ class BlogsController < ApplicationController
     @blogs = @blogs.order(created_at: :desc)
 
     respond_to do |format|
-      format.html
+      format.html { @pagy, @blogs = pagy(@blogs) }
       format.rss { render layout: false }
     end
   end
