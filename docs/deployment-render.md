@@ -36,7 +36,7 @@ Andy needs to complete these steps in Render:
 6. Set `BLOG_ADMIN_TOKEN` in the `andyportfolio-web` service environment.
 7. Create the blueprint resources.
 8. Trigger the first deploy if Render does not start it automatically.
-9. Open the generated Render service URL and confirm `/` returns `200`.
+9. Open the generated Render service URL and confirm `/up` returns `200`.
 
-The Rails root route points to `blogs#index`, so `/` is the deploy entrypoint
-and Render health check path.
+The Rails root route points to `blogs#index`, while Render probes `/up` as a
+minimal health check that does not render the public blog list.
