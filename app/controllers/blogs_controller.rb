@@ -70,7 +70,10 @@ class BlogsController < ApplicationController
     end
 
     def require_blog_admin
-      head :not_found unless blog_admin?
+      unless blog_admin?
+        Rails.logger.warn "[SECURITY] Admin action attempted but BLOG_ADMIN_TOKEN is not set." if ENV["BLOG_ADMIN_TOKEN"].blank?
+        head :not_found
+      end
     end
 
     def blog_admin?
