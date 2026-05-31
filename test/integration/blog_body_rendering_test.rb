@@ -15,7 +15,7 @@ class BlogBodyRenderingTest < ActionDispatch::IntegrationTest
     get blog_path(blog)
 
     assert_response :success
-    assert_select "div#blog_#{blog.id}" do
+    assert_select "article#blog_#{blog.id}" do
       assert_select "script", false
       assert_select "[onclick]", false
       assert_select "[onmouseover]", false
