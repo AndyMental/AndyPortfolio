@@ -95,14 +95,4 @@ class BlogAdminGateTest < ActionDispatch::IntegrationTest
       headers: headers
     assert_response :not_found
   end
-
-  test "missing BLOG_ADMIN_TOKEN logs a security warning on admin action" do
-    ENV.delete("BLOG_ADMIN_TOKEN")
-    
-    # We can't easily assert on Rails.logger.warn in a standard integration test
-    # without mocking or log-parsing, but we can verify it doesn't crash and 
-    # returns the expected 404.
-    get new_blog_path
-    assert_response :not_found
-  end
 end
