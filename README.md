@@ -77,3 +77,10 @@ This script runs `bundle install`, `bundle exec rails assets:precompile`, and
 Render deployment is configured by `render.yaml`. The deployment handoff,
 required environment variables, build command, pre-deploy migration command, and
 start command are documented in `docs/deployment-render.md`.
+
+## Conventions
+
+- Frontend assets via `importmap-rails` and Sprockets; no Node/webpack toolchain in repo.
+- ERB views under `app/views/`; layouts in `app/views/layouts/`.
+- Database migrations under `db/migrate/`; schema in `db/schema.rb`.
+- Default Rails directory layout (`app/`, `config/`, `db/`, `lib/`, `public/`, `vendor/`).
