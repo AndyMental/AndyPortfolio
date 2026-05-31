@@ -8,7 +8,12 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <%# SimpleCSS pinned to jsDelivr 2.3.7 (immutable). Regenerate hash on upgrade: curl -fsSL <URL> | openssl dgst -sha384 -binary | openssl base64 -A %>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/simpledotcss@2.3.7/simple.min.css"
+          integrity="sha384-w3/JhK7GP1jIgYT9phdYXYeUKzhTc4AxDpfqFZO1tkmCHBZrEmZ2c68gaD1yKhZq"
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer">
     <%= javascript_importmap_tags %>
   </head>
 
