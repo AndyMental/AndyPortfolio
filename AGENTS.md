@@ -51,6 +51,10 @@ bin/rails test test/integration/
 
 Checked-in tests use Rails Minitest under `test/`, with integration coverage in `test/integration/`.
 
+### Worker sandbox runtime (observed)
+
+The Multica worker sandbox currently ships Ruby 3.2.x, Bundler, and PostgreSQL 16 on the default `/var/run/postgresql:5432` socket (`pg_isready` returns `accepting connections`). Local verification via `bin/setup && bin/rails test` is therefore runnable from a worker; do not treat Ruby/Bundler/PG availability as a blocker. Verify with `ruby --version`, `bundle --version`, and `pg_isready` if in doubt — record the actual error if any tool is missing instead of assuming.
+
 ## Lint
 
 No lint tool, config, or gem declared in `Gemfile`/`Gemfile.lock`. There is no documented lint command.
