@@ -1,7 +1,20 @@
 # AndyPortfolio
 
-AndyPortfolio is a Ruby on Rails portfolio application. The root route renders
-the blog index, and blog pages are backed by standard Rails resources.
+AndyPortfolio is a personal portfolio and blog application built with Ruby on
+Rails. It serves as a public showcase for Andy's blog posts and projects.
+
+## Project Context
+
+This application is designed for simplicity and security:
+- **Public Blog**: Visitors can read all blog posts via a clean, server-side
+  rendered interface.
+- **Admin Gate**: Administrative actions (create, edit, delete) are protected by
+  a token-based authorization mechanism. To perform these actions, a valid
+  `X-Blog-Admin-Token` header must be provided, matching the `BLOG_ADMIN_TOKEN`
+  environment variable.
+- **SEO Ready**: Includes a dynamic sitemap and robots.txt configuration.
+- **No Heavy Frontend**: Uses Rails standard patterns (Turbo/Stimulus) with no
+  Node.js or complex build pipelines.
 
 ## Stack
 
@@ -55,7 +68,8 @@ bin/rails test
 bin/rails test test/integration/
 ```
 
-Tests use Rails Minitest under `test/`.
+Tests use Rails Minitest under `test/`. The suite includes integration coverage
+for public browsing, admin authorization, and SEO endpoints.
 
 ## Lint
 

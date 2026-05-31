@@ -49,7 +49,12 @@ bin/rails test
 bin/rails test test/integration/
 ```
 
-Checked-in tests use Rails Minitest under `test/`, with integration coverage in `test/integration/`.
+Checked-in tests use Rails Minitest under `test/`. The suite focuses on integration coverage in `test/integration/`:
+
+- `blog_admin_gate_test.rb`: Verifies that administrative actions (create/update/delete) are restricted to requests with a valid `X-Blog-Admin-Token` header.
+- `blogs_index_test.rb`: Verifies that the public blog index renders correctly.
+- `blog_body_rendering_test.rb`: Verifies that blog bodies are sanitized to strip unsafe HTML (XSS protection) while preserving basic formatting.
+- `robots_and_sitemap_test.rb`: Verifies that `/robots.txt` and `/sitemap.xml` are served correctly for SEO.
 
 ## Lint
 
@@ -94,5 +99,4 @@ Deploy-preflight references:
 
 ## Known gaps
 
-- README is the default Rails placeholder; it does not document install/build/test/lint/run.
 - No CI configuration is checked in.
