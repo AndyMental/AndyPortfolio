@@ -70,6 +70,9 @@ class BlogsController < ApplicationController
     end
 
     def require_blog_admin
+      if ENV["BLOG_ADMIN_TOKEN"].to_s.strip.empty?
+        logger.warn "Admin access denied to #{request.path}: BLOG_ADMIN_TOKEN is not set."
+      end
       head :not_found unless blog_admin?
     end
 
