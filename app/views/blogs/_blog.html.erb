@@ -6,7 +6,7 @@
 
   <p>
     <strong>Body:</strong>
-    <%= sanitize blog.body, tags: %w[p br strong em b i ul ol li a], attributes: %w[href title rel target] %>
+    <%= rendered_blog_body blog.body %>
   </p>
 
 </div>
