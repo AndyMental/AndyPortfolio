@@ -53,7 +53,11 @@ Checked-in tests use Rails Minitest under `test/`, with integration coverage in 
 
 ## Lint
 
-No lint tool, config, or gem declared in `Gemfile`/`Gemfile.lock`. There is no documented lint command.
+```sh
+bundle exec rubocop
+```
+
+Uses RuboCop with Rails extensions. Configured in `.rubocop.yml`.
 
 ## Build (production assets)
 
