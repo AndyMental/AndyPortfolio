@@ -14,10 +14,7 @@
 <% else %>
   <div id="blogs">
     <% @blogs.each do |blog| %>
-      <%= render blog %>
-      <p>
-        <%= link_to "Show this blog", blog %>
-      </p>
+      <%= render "blog_card", blog: blog %>
     <% end %>
   </div>
 <% end %>
