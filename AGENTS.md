@@ -94,5 +94,4 @@ Deploy-preflight references:
 
 ## Known gaps
 
-- README is the default Rails placeholder; it does not document install/build/test/lint/run.
 - No CI configuration is checked in.
