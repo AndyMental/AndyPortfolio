@@ -13,8 +13,22 @@
   </head>
 
   <body>
+    <header>
+      <nav>
+        <%= link_to "AndyPortfolio", root_path %>
+      </nav>
+    </header>
+
     <main>
       <%= yield %>
     </main>
+
+    <footer>
+      <p>&copy; <%= Time.current.year %> Andy Mental. All rights reserved.</p>
+      <p>
+        <a href="https://github.com/AndyMental">GitHub</a> |
+        <a href="https://x.com/AndyMental">X/Twitter</a>
+      </p>
+    </footer>
   </body>
 </html>
