@@ -70,7 +70,7 @@ class BlogsController < ApplicationController
     end
 
     def require_blog_admin
-      head :not_found unless blog_admin?
+      render "errors/not_found", status: :not_found, layout: false unless blog_admin?
     end
 
     def blog_admin?
