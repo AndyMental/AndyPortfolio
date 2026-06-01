@@ -1,4 +1,5 @@
 <% content_for :title, @blog.title %>
+<% content_for :header_title, @blog.title %>
 <% content_for :description, strip_tags(@blog.body).truncate(160) %>
 
 <%= render "breadcrumbs", links: [["Blog", blogs_path], [@blog.title, nil]] %>

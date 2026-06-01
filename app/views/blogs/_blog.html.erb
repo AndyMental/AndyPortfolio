@@ -1,7 +1,5 @@
 <article id="<%= dom_id blog %>">
-  <% if action_name == "show" %>
-    <h1><%= blog.title %></h1>
-  <% else %>
+  <% unless action_name == "show" %>
     <h2><%= link_to blog.title, blog %></h2>
   <% end %>
 
