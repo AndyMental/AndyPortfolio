@@ -3,7 +3,7 @@ require "test_helper"
 class BlogPageTitlesTest < ActionDispatch::IntegrationTest
   setup do
     @blog = Blog.create!(title: "Launch Notes", body: "<p>public body</p>")
-    @prior_token = ENV["BLOG_ADMIN_TOKEN"]
+    @prior_token = ENV.fetch("BLOG_ADMIN_TOKEN", nil)
     ENV["BLOG_ADMIN_TOKEN"] = "test-admin-token"
   end
 

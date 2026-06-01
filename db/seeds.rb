@@ -2,4 +2,4 @@
 #
 # Production has no required seed data for this application. Running
 # `bin/rails db:seed` should remain safe in every environment.
-puts "No default seed data required."
+Rails.logger.debug "No default seed data required."

@@ -1,0 +1,24 @@
+inherit_from: .rubocop_todo.yml
+
+plugins:
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'db/schema.rb'
+    - 'vendor/**/*'
+    - 'bin/*'
+    - 'node_modules/**/*'
+
+Rails:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes

@@ -3,7 +3,7 @@ require "test_helper"
 class BlogAdminGateTest < ActionDispatch::IntegrationTest
   setup do
     @blog = Blog.create!(title: "Visible post", body: "<p>hello</p>")
-    @prior_token = ENV["BLOG_ADMIN_TOKEN"]
+    @prior_token = ENV.fetch("BLOG_ADMIN_TOKEN", nil)
     ENV["BLOG_ADMIN_TOKEN"] = "test-admin-token"
   end
 
@@ -69,8 +69,8 @@ class BlogAdminGateTest < ActionDispatch::IntegrationTest
     assert_match(/Destroy this blog/, response.body)
 
     post blogs_path,
-      params: { blog: { title: "Admin post", body: "<p>body</p>" } },
-      headers: headers
+         params: { blog: { title: "Admin post", body: "<p>body</p>" } },
+         headers: headers
     assert_response :redirect
     assert_equal 2, Blog.count
   end
@@ -91,8 +91,8 @@ class BlogAdminGateTest < ActionDispatch::IntegrationTest
     headers = { "X-Blog-Admin-Token" => "anything" }
 
     post blogs_path,
-      params: { blog: { title: "x", body: "y" } },
-      headers: headers
+         params: { blog: { title: "x", body: "y" } },
+         headers: headers
     assert_response :not_found
   end
 end

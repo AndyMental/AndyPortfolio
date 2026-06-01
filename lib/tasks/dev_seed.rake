@@ -1,9 +1,7 @@
 namespace :dev do
   desc "Create deterministic demo blog posts for development and test"
   task seed_blogs: :environment do
-    unless Rails.env.development? || Rails.env.test?
-      abort "dev:seed_blogs is only available in development and test."
-    end
+    abort "dev:seed_blogs is only available in development and test." unless Rails.env.development? || Rails.env.test?
 
     created = 0
 

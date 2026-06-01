@@ -5,7 +5,7 @@ Repo-local guidance for coding agents. Only commands and conventions observable 
 ## Stack (detected from repo files)
 
 - Ruby on Rails application.
-- Ruby version pinned to `3.2.0` (see `.ruby-version`).
+- Ruby version pinned to `3.2.3` (see `.ruby-version`).
 - Rails `~> 7.0.4`, Sprockets, importmap-rails, Turbo, Stimulus, Jbuilder (see `Gemfile`, `Gemfile.lock`).
 - Web server: Puma `~> 5.0`.
 - Database: PostgreSQL (`pg ~> 1.1`). Development DB name `AndyPortfolio_development` (see `config/database.yml`).
@@ -27,7 +27,7 @@ bin/setup
 4. `bin/rails log:clear tmp:clear`
 5. `bin/rails restart`
 
-Prerequisite: a working Ruby 3.2.0 toolchain and a reachable PostgreSQL instance configured per `config/database.yml`.
+Prerequisite: a working Ruby 3.2.3 toolchain and a reachable PostgreSQL instance configured per `config/database.yml`.
 
 ## Run
 
@@ -53,7 +53,11 @@ Checked-in tests use Rails Minitest under `test/`, with integration coverage in 
 
 ## Lint
 
-No lint tool, config, or gem declared in `Gemfile`/`Gemfile.lock`. There is no documented lint command.
+```sh
+bundle exec rubocop
+```
+
+Uses RuboCop with Rails extensions. Configured in `.rubocop.yml`.
 
 ## Build (production assets)
 
