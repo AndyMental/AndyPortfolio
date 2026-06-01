@@ -27,7 +27,7 @@ bin/setup
 4. `bin/rails log:clear tmp:clear`
 5. `bin/rails restart`
 
-Prerequisite: a working Ruby 3.2.0 toolchain and a reachable PostgreSQL instance configured per `config/database.yml`.
+Prerequisite: a working Ruby 3.2.0 toolchain and a reachable PostgreSQL instance configured per `config/database.yml`. Do not require the `psql` CLI for readiness checks; prefer Ruby/Rails-native checks such as `bin/rails db:prepare`, `bin/rails db:migrate:status`, or `bin/rails runner "ActiveRecord::Base.connection.active?"`.
 
 ## Run
 
@@ -50,6 +50,19 @@ bin/rails test test/integration/
 ```
 
 Checked-in tests use Rails Minitest under `test/`, with integration coverage in `test/integration/`.
+
+## CI
+
+GitHub Actions workflow `.github/workflows/rails.yml` runs on pull requests with a PostgreSQL 16 service. It runs:
+
+```sh
+bundle install --jobs 4 --retry 3 --full-index
+bin/rails db:prepare
+bin/rails test
+bundle exec rails assets:precompile
+```
+
+The workflow uses `pg_isready` inside the Postgres service health check, not as a required host tool for agents.
 
 ## Lint
 
@@ -94,5 +107,4 @@ Deploy-preflight references:
 
 ## Known gaps
 
-- README is the default Rails placeholder; it does not document install/build/test/lint/run.
-- No CI configuration is checked in.
+- No lint tool, config, or gem is checked in.

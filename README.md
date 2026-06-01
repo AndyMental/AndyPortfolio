@@ -23,7 +23,9 @@ this repository.
 
 The development database is `AndyPortfolio_development`; the test database is
 `AndyPortfolio_test`. See `config/database.yml` for the local PostgreSQL
-configuration.
+configuration. Local readiness checks should use Rails commands such as
+`bin/rails db:prepare` or `bin/rails db:migrate:status`; the `psql` CLI is not
+required by this repository.
 
 ## Setup
 
