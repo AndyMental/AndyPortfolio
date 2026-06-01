@@ -37,6 +37,23 @@ class AccessibilitySmokeTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "layout loads local stylesheet after vendor styles" do
+    get blogs_path
+
+    assert_response :success
+
+    body = response.body
+    simple_css_index = body.index("https://cdn.simplecss.org/simple.min.css")
+    prism_css_index = body.index("https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css")
+    application_css_index = body.index(%r{/assets/application})
+
+    assert simple_css_index, "expected Simple.css stylesheet in layout"
+    assert prism_css_index, "expected Prism stylesheet in layout"
+    assert application_css_index, "expected local application stylesheet in layout"
+    assert_operator simple_css_index, :<, application_css_index
+    assert_operator prism_css_index, :<, application_css_index
+  end
+
   test "blog search exposes a label and status region for no results" do
     get blogs_path(q: "missing")
 
