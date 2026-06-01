@@ -4,6 +4,7 @@ xml.rss version: "2.0" do
     xml.title "Andy Mental's Blog"
     xml.description "Andy Mental's portfolio — a Rails-backed blog companion to the andy-portfolio.com showcase."
     xml.link blogs_url
+    xml.lastBuildDate @blogs.first&.created_at&.to_fs(:rfc822) || Time.current.to_fs(:rfc822)
 
     @blogs.each do |blog|
       xml.item do
