@@ -2,19 +2,49 @@
 <html lang="en">
   <head>
     <title><%= page_title %></title>
-    <meta name="description" content="Andy Mental's portfolio — a Rails-backed blog companion to the andy-portfolio.com showcase.">
+    <%= tag.meta name: "description", content: yield_meta_tag(:description, "Andy Mental's portfolio — a Rails-backed blog companion to the andy-portfolio.com showcase.") %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<%= request.original_url %>">
+    <meta property="og:title" content="<%= page_title %>">
+    <%= tag.meta property: "og:description", content: yield_meta_tag(:description, "Andy Mental's portfolio — a Rails-backed blog companion to the andy-portfolio.com showcase.") %>
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="<%= request.original_url %>">
+    <meta property="twitter:title" content="<%= page_title %>">
+    <%= tag.meta property: "twitter:description", content: yield_meta_tag(:description, "Andy Mental's portfolio — a Rails-backed blog companion to the andy-portfolio.com showcase.") %>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
     <%= javascript_importmap_tags %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
   </head>
 
   <body>
+    <header>
+      <nav>
+        <%= link_to "Home", root_path %>
+        <%= link_to "About", about_path %>
+        <%= link_to "Blog", blogs_path %>
+      </nav>
+    </header>
+
     <main>
+      <% if content_for?(:header_title) %>
+        <h1><%= content_for(:header_title) %></h1>
+      <% end %>
       <%= yield %>
     </main>
+
+    <footer>
+      <p>&copy; <%= Time.current.year %> Andy Mental. Built with Rails and Simple.css.</p>
+    </footer>
   </body>
 </html>

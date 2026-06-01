@@ -76,7 +76,7 @@ Render-managed deploy is declared in `render.yaml`:
 - `buildCommand: ./bin/render-build.sh`
 - `preDeployCommand: bundle exec rails db:migrate`
 - `startCommand: bundle exec puma -C config/puma.rb`
-- `healthCheckPath: /`
+- `healthCheckPath: /up` (dedicated DB-independent check)
 
 Required env vars (from `render.yaml`): `DATABASE_URL` (from `andyportfolio-db`), `RAILS_ENV=production`, `RAILS_LOG_TO_STDOUT=1`, `RAILS_SERVE_STATIC_FILES=1`, `RAILS_MASTER_KEY` (manual), `BLOG_ADMIN_TOKEN` (manual), `SECRET_KEY_BASE` (generated).
 
