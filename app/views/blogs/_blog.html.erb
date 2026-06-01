@@ -9,5 +9,13 @@
   
   <p>
     <small>Posted on <%= blog.created_at.to_date.to_fs(:long) %></small>
+    <% if blog.tag_list.any? %>
+      <br>
+      <small>Tags: 
+        <% blog.tag_list.each do |tag| %>
+          <%= link_to tag, blogs_path(tag: tag) %><%= "," unless tag == blog.tag_list.last %>
+        <% end %>
+      </small>
+    <% end %>
   </p>
 </article>

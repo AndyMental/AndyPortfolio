@@ -4,7 +4,9 @@ class BlogsController < ApplicationController
 
   # GET /blogs or /blogs.json
   def index
-    @blogs = if params[:q].present?
+    @blogs = if params[:tag].present?
+               Blog.tagged_with(params[:tag])
+             elsif params[:q].present?
                Blog.search(params[:q])
              else
                Blog.all
@@ -76,7 +78,7 @@ class BlogsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def blog_params
-      params.require(:blog).permit(:title, :body)
+      params.require(:blog).permit(:title, :body, :tags)
     end
 
     def require_blog_admin

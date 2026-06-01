@@ -12,9 +12,15 @@
   <%= form.label :q, "Search blogs:" %>
   <%= form.text_field :q, value: params[:q], id: "q", placeholder: "Keyword..." %>
   <%= form.submit "Search" %>
-  <% if params[:q].present? %>
+  <% if params[:q].present? || params[:tag].present? %>
     <%= link_to "Clear", blogs_path %>
   <% end %>
+<% end %>
+
+<% if params[:tag].present? %>
+  <p role="status" aria-live="polite">
+    Filtering by tag: <strong><%= params[:tag] %></strong>
+  </p>
 <% end %>
 
 <% if @blogs.empty? %>
