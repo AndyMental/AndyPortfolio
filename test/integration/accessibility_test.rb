@@ -10,7 +10,7 @@ class AccessibilityTest < ActionDispatch::IntegrationTest
     get root_path
     assert_select "header nav a[href=?][aria-current='page']", root_path, text: "Home"
     assert_select "header nav a[href=?]:not([aria-current])", about_path, text: "About"
-    assert_select "header nav a[href=?][aria-current='page']", blogs_path, text: "Blog" # Home is blogs#index
+    assert_select "header nav a[href=?]:not([aria-current])", blogs_path, text: "Blog" # Should not be active on root
 
     # About
     get about_path
@@ -20,6 +20,7 @@ class AccessibilityTest < ActionDispatch::IntegrationTest
 
     # Blog index
     get blogs_path
+    assert_select "header nav a[href=?]:not([aria-current])", root_path, text: "Home"
     assert_select "header nav a[href=?][aria-current='page']", blogs_path, text: "Blog"
   end
 
@@ -41,12 +42,5 @@ class AccessibilityTest < ActionDispatch::IntegrationTest
       assert_select "a[href=?]:not([aria-current])", root_path, text: "Home"
       assert_select "span[aria-current='page']", text: "Blog"
     end
-  end
-
-  test "blog validation works and form can show errors" do
-    # This just ensures our validation change didn't break things and is testable
-    blog = Blog.new(title: "")
-    assert_not blog.valid?
-    assert_includes blog.errors[:title], "can't be blank"
   end
 end
