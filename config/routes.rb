@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "about" => "static_pages#about"
   resources :blogs
   get "/sitemap.xml", to: "sitemap#index", defaults: { format: :xml }, as: :sitemap
+  get "/robots.txt", to: "robots#show"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
