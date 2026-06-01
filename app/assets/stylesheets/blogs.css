@@ -1,3 +1,8 @@
+:root {
+  --border-width: 1px;
+  --standard-border-radius: 5px;
+}
+
 /* Container for the blog cards */
 #blogs {
   display: grid;
