@@ -80,7 +80,12 @@ class BlogsController < ApplicationController
     end
 
     def require_blog_admin
-      head :not_found unless blog_admin?
+      unless blog_admin?
+        if ENV["BLOG_ADMIN_TOKEN"].to_s.empty?
+          Rails.logger.warn "Admin access denied because BLOG_ADMIN_TOKEN is unset."
+        end
+        head :not_found
+      end
     end
 
     def blog_admin?
