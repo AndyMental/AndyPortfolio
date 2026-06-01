@@ -1,6 +1,6 @@
 class SitemapController < ApplicationController
   def index
-    @blogs = Blog.all
+    @blogs = Blog.all.order(created_at: :desc, id: :desc)
     respond_to do |format|
       format.xml
     end

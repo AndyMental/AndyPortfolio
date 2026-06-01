@@ -5,9 +5,9 @@ class BlogsController < ApplicationController
   # GET /blogs or /blogs.json
   def index
     if params[:q].present?
-      @blogs = Blog.search(params[:q])
+      @blogs = Blog.search(params[:q]).order(created_at: :desc, id: :desc)
     else
-      @blogs = Blog.all
+      @blogs = Blog.all.order(created_at: :desc, id: :desc)
     end
   end
 
