@@ -92,7 +92,10 @@ Deploy-preflight references:
 - Database migrations under `db/migrate/`; schema in `db/schema.rb`.
 - Default Rails directory layout (`app/`, `config/`, `db/`, `lib/`, `public/`, `vendor/`).
 
+## Continuous integration
+
+`.github/workflows/rails.yml` runs on every pull request: it installs Bundler dependencies with `--full-index`, runs `bin/rails db:prepare` and `bin/rails test` against a PostgreSQL 16 service container, then precompiles production assets with a dummy `SECRET_KEY_BASE`. There is no scheduled or push-event job.
+
 ## Known gaps
 
 - README is the default Rails placeholder; it does not document install/build/test/lint/run.
-- No CI configuration is checked in.
