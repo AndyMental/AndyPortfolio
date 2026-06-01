@@ -13,7 +13,7 @@ class SyntaxHighlightingTest < ActionDispatch::IntegrationTest
     get blog_path(blog)
 
     assert_response :success
-    assert_select "div#blog_#{blog.id}" do
+    assert_select "article#blog_#{blog.id}" do
       assert_select "pre" do
         assert_select "code.language-ruby", text: 'puts "Hello World"'
       end

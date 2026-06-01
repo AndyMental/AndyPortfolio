@@ -1,0 +1,8 @@
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <p>
+    <%= link_to "Home", root_path %>
+    <% local_assigns[:links]&.each do |text, path| %>
+      &gt; <%= path ? link_to(text, path) : content_tag(:span, text) %>
+    <% end %>
+  </p>
+</nav>

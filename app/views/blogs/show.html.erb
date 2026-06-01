@@ -1,10 +1,16 @@
 <% content_for :title, @blog.title %>
+<% content_for :header_title, @blog.title %>
+<% content_for :description, strip_tags(@blog.body).truncate(160) %>
+
+<%= render "breadcrumbs", links: [["Blog", blogs_path], [@blog.title, nil]] %>
 
 <% if notice.present? %>
   <p style="color: green" role="status" aria-live="polite"><%= notice %></p>
 <% end %>
 
 <%= render @blog %>
+
+<hr>
 
 <div>
   <% if blog_admin? %>
@@ -13,6 +19,7 @@
   <%= link_to "Back to blogs", blogs_path %>
 
   <% if blog_admin? %>
-    <%= button_to "Destroy this blog", @blog, method: :delete %>
+    <br><br>
+    <%= button_to "Destroy this blog", @blog, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
   <% end %>
 </div>

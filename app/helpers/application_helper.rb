@@ -6,4 +6,8 @@ module ApplicationHelper
 
     "#{title} | AndyPortfolio"
   end
+
+  def yield_meta_tag(name, default)
+    content_for?(name) ? content_for(name) : default
+  end
 end
