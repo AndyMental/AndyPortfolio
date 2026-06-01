@@ -14,6 +14,24 @@
  *= require_self
  */
 
+.skip-link {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
+  transform: translateY(-200%);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 nav[aria-label="Breadcrumb"] {
   margin-top: -1rem;
   margin-bottom: 2rem;

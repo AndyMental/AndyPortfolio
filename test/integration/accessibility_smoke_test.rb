@@ -30,7 +30,9 @@ class AccessibilitySmokeTest < ActionDispatch::IntegrationTest
       assert_select "header nav a[href='#{root_path}']", "Home"
       assert_select "header nav a[href='#{about_path}']", "About"
       assert_select "header nav a[href='#{blogs_path}']", "Blog"
-      assert_select "main", 1
+      assert_select "a.skip-link[href='#main-content']", "Skip to main content"
+      assert_select "main#main-content", 1
+      assert_select "main#main-content[tabindex='-1']", 1
       assert_select "main h1", 1
       assert_select "main h1", heading
       assert_select "footer", /Andy Mental/
