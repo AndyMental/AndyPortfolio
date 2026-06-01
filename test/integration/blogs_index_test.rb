@@ -23,7 +23,7 @@ class BlogsIndexTest < ActionDispatch::IntegrationTest
 
     # Check for the first page posts
     assert_select "div#blogs" do
-      assert_select "div[id^='blog_']", count: 20
+      assert_select "article[id^='blog_']", count: 20
     end
 
     # Check for pagination nav
@@ -33,7 +33,7 @@ class BlogsIndexTest < ActionDispatch::IntegrationTest
     get blogs_path(page: 2)
     assert_response :success
     assert_select "div#blogs" do
-      assert_select "div[id^='blog_']", count: 1
+      assert_select "article[id^='blog_']", count: 1
     end
   end
 end
