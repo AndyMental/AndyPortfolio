@@ -5,7 +5,7 @@ Repo-local guidance for coding agents. Only commands and conventions observable 
 ## Stack (detected from repo files)
 
 - Ruby on Rails application.
-- Ruby version pinned to `3.2.0` (see `.ruby-version`).
+- Ruby version pinned to `3.2.0` (see `.ruby-version`). Environments with `3.2.3` may require a `Gemfile` adjustment to `ruby ">= 3.2.0"`.
 - Rails `~> 7.0.4`, Sprockets, importmap-rails, Turbo, Stimulus, Jbuilder (see `Gemfile`, `Gemfile.lock`).
 - Web server: Puma `~> 5.0`.
 - Database: PostgreSQL (`pg ~> 1.1`). Development DB name `AndyPortfolio_development` (see `config/database.yml`).
@@ -76,7 +76,7 @@ Render-managed deploy is declared in `render.yaml`:
 - `buildCommand: ./bin/render-build.sh`
 - `preDeployCommand: bundle exec rails db:migrate`
 - `startCommand: bundle exec puma -C config/puma.rb`
-- `healthCheckPath: /`
+- `healthCheckPath: /up` (dedicated DB-independent check)
 
 Required env vars (from `render.yaml`): `DATABASE_URL` (from `andyportfolio-db`), `RAILS_ENV=production`, `RAILS_LOG_TO_STDOUT=1`, `RAILS_SERVE_STATIC_FILES=1`, `RAILS_MASTER_KEY` (manual), `BLOG_ADMIN_TOKEN` (manual), `SECRET_KEY_BASE` (generated).
 
