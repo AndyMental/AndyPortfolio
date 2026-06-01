@@ -13,9 +13,7 @@
   </section>
 <% else %>
   <div id="blogs">
-    <% @blogs.each do |blog| %>
-      <%= render "blog_card", blog: blog %>
-    <% end %>
+    <%= render partial: "blog", collection: @blogs, locals: { index: true } %>
   </div>
 <% end %>
 
