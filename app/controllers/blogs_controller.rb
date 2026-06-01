@@ -4,10 +4,16 @@ class BlogsController < ApplicationController
 
   # GET /blogs or /blogs.json
   def index
-    if params[:q].present?
-      @blogs = Blog.search(params[:q])
-    else
-      @blogs = Blog.all
+    @blogs = if params[:q].present?
+               Blog.search(params[:q])
+             else
+               Blog.all
+             end
+    @blogs = @blogs.order(created_at: :desc)
+
+    respond_to do |format|
+      format.html
+      format.rss { render layout: false }
     end
   end
 
