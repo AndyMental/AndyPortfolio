@@ -2,8 +2,20 @@
 <html lang="en">
   <head>
     <title><%= page_title %></title>
-    <meta name="description" content="Andy Mental's portfolio — a Rails-backed blog companion to the andy-portfolio.com showcase.">
+    <meta name="description" content="<%= page_description %>">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <%# Open Graph / Facebook %>
+    <meta property="og:type" content="<%= og_type %>">
+    <meta property="og:title" content="<%= og_title %>">
+    <meta property="og:description" content="<%= page_description %>">
+    <meta property="og:site_name" content="AndyPortfolio">
+
+    <%# Twitter %>
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="<%= og_title %>">
+    <meta property="twitter:description" content="<%= page_description %>">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
