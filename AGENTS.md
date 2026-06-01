@@ -66,7 +66,15 @@ The workflow uses `pg_isready` inside the Postgres service health check, not as 
 
 ## Lint
 
-No lint tool, config, or gem declared in `Gemfile`/`Gemfile.lock`. There is no documented lint command.
+```sh
+bundle exec rubocop
+```
+
+Rubocop is configured to inherit from Rails defaults (see `.rubocop.yml`). To auto-correct violations, run:
+
+```sh
+bundle exec rubocop -A
+```
 
 ## Build (production assets)
 
