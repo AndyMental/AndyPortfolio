@@ -1,5 +1,7 @@
 <% content_for :title, "Blog" %>
 
+<%= render "breadcrumbs", links: [["Blog", nil]] %>
+
 <% if notice.present? %>
   <p style="color: green" role="status" aria-live="polite"><%= notice %></p>
 <% end %>

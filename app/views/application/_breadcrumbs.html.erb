@@ -1,0 +1,10 @@
+<nav aria-label="Breadcrumb">
+  <p>
+    <%= link_to "Home", root_path %>
+    <% if local_assigns[:links] %>
+      <% links.each do |text, path| %>
+        &gt; <%= path ? link_to(text, path) : text %>
+      <% end %>
+    <% end %>
+  </p>
+</nav>
