@@ -1,6 +1,8 @@
 <% content_for :title, "Edit #{@blog.title.presence || "Blog"}" %>
 <% content_for :header_title, "Editing Blog" %>
 
+<%= render "breadcrumbs", links: [["Blog", blogs_path], [@blog.title, blog_path(@blog)], ["Edit", nil]] %>
+
 <%= render "form", blog: @blog %>
 
 <br>

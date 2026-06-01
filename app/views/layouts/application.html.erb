@@ -2,20 +2,20 @@
 <html lang="en">
   <head>
     <title><%= page_title %></title>
-    <meta name="description" content="<%= yield_meta_tag(:description, "Andy Mental's portfolio — a Rails-backed blog companion to the andy-portfolio.com showcase.") %>">
+    <%= tag.meta name: "description", content: yield_meta_tag(:description, "Andy Mental's portfolio — a Rails-backed blog companion to the andy-portfolio.com showcase.") %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="<%= request.original_url %>">
     <meta property="og:title" content="<%= page_title %>">
-    <meta property="og:description" content="<%= yield_meta_tag(:description, "Andy Mental's portfolio — a Rails-backed blog companion to the andy-portfolio.com showcase.") %>">
+    <%= tag.meta property: "og:description", content: yield_meta_tag(:description, "Andy Mental's portfolio — a Rails-backed blog companion to the andy-portfolio.com showcase.") %>
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="<%= request.original_url %>">
     <meta property="twitter:title" content="<%= page_title %>">
-    <meta property="twitter:description" content="<%= yield_meta_tag(:description, "Andy Mental's portfolio — a Rails-backed blog companion to the andy-portfolio.com showcase.") %>">
+    <%= tag.meta property: "twitter:description", content: yield_meta_tag(:description, "Andy Mental's portfolio — a Rails-backed blog companion to the andy-portfolio.com showcase.") %>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -36,7 +36,6 @@
     </header>
 
     <main>
-      <%= breadcrumbs %>
       <% if content_for?(:header_title) %>
         <h1><%= content_for(:header_title) %></h1>
       <% end %>

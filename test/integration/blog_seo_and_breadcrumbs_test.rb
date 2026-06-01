@@ -35,35 +35,12 @@ class BlogSeoAndBreadcrumbsTest < ActionDispatch::IntegrationTest
     assert_select "meta[property='og:title'][content='Blog | AndyPortfolio']"
   end
 
-  test "breadcrumbs are present on show page" do
-    get blog_path(@blog)
-    assert_response :success
-
-    assert_select "nav[aria-label='Breadcrumb']" do
-      assert_select "a[href='/']", text: "Home"
-      assert_select "a[href='/blogs']", text: "Blog"
-      assert_select "p", text: /Home.*Blog.*SEO Test Post/
-    end
-  end
-  
   test "breadcrumbs correctly escape HTML in title" do
     xss_blog = Blog.create!(title: "<script>alert('xss')</script>", body: "xss test")
     get blog_path(xss_blog)
     assert_response :success
     assert_select "nav[aria-label='Breadcrumb'] p" do
       assert_match /&lt;script&gt;alert\(&#39;xss&#39;\)&lt;\/script&gt;/, response.body
-    end
-  end
-
-  test "breadcrumbs are present on new page" do
-    ENV["BLOG_ADMIN_TOKEN"] = "test-token"
-    get new_blog_path, headers: { "X-Blog-Admin-Token" => "test-token" }
-    assert_response :success
-
-    assert_select "nav[aria-label='Breadcrumb']" do
-      assert_select "a[href='/']", text: "Home"
-      assert_select "a[href='/blogs']", text: "Blog"
-      assert_select "p", text: /Home.*Blog.*New Blog/
     end
   end
 
