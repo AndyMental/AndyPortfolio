@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "/up", to: "health#show"
   root "blogs#index"
   resources :blogs
   get "/sitemap.xml", to: "sitemap#index", defaults: { format: :xml }, as: :sitemap
