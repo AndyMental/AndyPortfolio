@@ -3,6 +3,10 @@
 Run local probes before release and repeat the live probes after release-ops records
 the Render service URL as `deploy_url`.
 
+After the owner-gated AndyPortfolio and StreakBeacon merge stacks land, run the
+cross-product visual pass in
+[`post-owner-merge-visual-smoke-checklist.md`](post-owner-merge-visual-smoke-checklist.md).
+
 ## Local
 
 | Probe | Expected result |
