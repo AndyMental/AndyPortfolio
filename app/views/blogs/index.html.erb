@@ -19,8 +19,14 @@
 
 <% if @blogs.empty? %>
   <section role="status" aria-live="polite">
-    <h2>No posts yet</h2>
-    <p>There aren't any blog posts to read right now. Check back soon.</p>
+    <% if params[:q].present? %>
+      <h2>No matching posts</h2>
+      <p>No blog posts match &ldquo;<%= params[:q] %>&rdquo;. Try a different keyword or clear the search.</p>
+      <p><%= link_to "Clear search", blogs_path %></p>
+    <% else %>
+      <h2>No posts yet</h2>
+      <p>There aren't any blog posts to read right now. Check back soon.</p>
+    <% end %>
   </section>
 <% else %>
   <div id="blogs">

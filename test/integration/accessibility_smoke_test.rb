@@ -43,7 +43,7 @@ class AccessibilitySmokeTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "form.search-form label[for='q']", "Search blogs:"
     assert_select "form.search-form input#q[name='q']", 1
-    assert_select "section[role='status'][aria-live='polite'] h2", "No posts yet"
+    assert_select "section[role='status'][aria-live='polite'] h2", "No matching posts"
   end
 
   test "anonymous public pages hide admin-only controls" do

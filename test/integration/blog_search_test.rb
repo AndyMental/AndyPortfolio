@@ -23,6 +23,9 @@ class BlogSearchTest < ActionDispatch::IntegrationTest
   test "searching with no results" do
     get blogs_path(q: "Nonexistent")
     assert_response :success
-    assert_includes response.body, "No posts yet"
+    assert_includes response.body, "No matching posts"
+    assert_includes response.body, "No blog posts match"
+    assert_includes response.body, "Clear search"
+    refute_includes response.body, "No posts yet"
   end
 end
