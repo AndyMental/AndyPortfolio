@@ -10,4 +10,9 @@
   <p>
     <small>Posted on <%= blog.created_at.to_date.to_fs(:long) %></small>
   </p>
+
+  <p>
+    <strong>Estimated Reading Time:</strong>
+    <%= blog.estimated_reading_time %> min
+  </p>
 </article>
