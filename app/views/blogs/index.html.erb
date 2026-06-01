@@ -24,10 +24,7 @@
   </section>
 <% else %>
   <div id="blogs">
-    <% @blogs.each do |blog| %>
-      <%= render blog %>
-      <hr>
-    <% end %>
+    <%= render partial: "blog", collection: @blogs, locals: { index: true } %>
   </div>
 
   <%== pagy_nav(@pagy) %>

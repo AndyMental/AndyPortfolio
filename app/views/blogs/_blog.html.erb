@@ -1,13 +1,19 @@
-<article id="<%= dom_id blog %>">
-  <% unless action_name == "show" %>
+<article class="blog-card" id="<%= dom_id blog %>">
+  <% if local_assigns[:index] %>
     <h2><%= link_to blog.title, blog %></h2>
   <% end %>
 
-  <div class="blog-body">
+  <div class="blog-excerpt <%= 'truncated' if local_assigns[:index] %>">
     <%= sanitize blog.body, tags: %w[p br strong em b i ul ol li a pre code], attributes: %w[href title rel target class] %>
   </div>
-  
+
   <p>
     <small>Posted on <%= blog.created_at.to_date.to_fs(:long) %></small>
   </p>
+
+  <% if local_assigns[:index] %>
+    <div class="blog-actions">
+      <%= link_to "Show this blog", blog %>
+    </div>
+  <% end %>
 </article>
