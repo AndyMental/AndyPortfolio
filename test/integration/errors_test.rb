@@ -1,6 +1,18 @@
 require "test_helper"
 
 class ErrorsTest < ActionDispatch::IntegrationTest
+  setup do
+    # Enable custom error pages for these tests
+    Rails.application.config.consider_all_requests_local = false
+    Rails.application.config.action_dispatch.show_exceptions = true
+  end
+
+  teardown do
+    # Restore defaults
+    Rails.application.config.consider_all_requests_local = true
+    Rails.application.config.action_dispatch.show_exceptions = false
+  end
+
   test "should get 404 for non-existent page" do
     get "/this-page-does-not-exist"
     assert_response :not_found
@@ -19,8 +31,11 @@ class ErrorsTest < ActionDispatch::IntegrationTest
   end
 
   test "should get 422 for unprocessable entity" do
-    # We can trigger 422 by manually visiting the route or simulating a rejected change
-    get "/422"
+    # Mock BlogsController to raise a 422 error
+    # ActionController::InvalidAuthenticityToken is mapped to 422
+    BlogsController.any_instance.stubs(:index).raises(ActionController::InvalidAuthenticityToken)
+    
+    get root_path
     assert_response :unprocessable_entity
     assert_select "h1", "Unprocessable Entity"
     assert_select "title", "Unprocessable Entity | AndyPortfolio"

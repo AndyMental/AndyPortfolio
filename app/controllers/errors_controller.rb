@@ -1,4 +1,7 @@
-class ErrorsController < ApplicationController
+class ErrorsController < ActionController::Base
+  layout "application"
+  helper ApplicationHelper
+
   def not_found
     render status: :not_found
   end
