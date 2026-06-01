@@ -10,7 +10,7 @@
 
 <%= form_with url: blogs_path, method: :get, class: "search-form" do |form| %>
   <%= form.label :q, "Search blogs:" %>
-  <%= form.text_field :q, value: params[:q], placeholder: "Keyword..." %>
+  <%= form.text_field :q, value: params[:q], id: "q", placeholder: "Keyword..." %>
   <%= form.submit "Search" %>
   <% if params[:q].present? %>
     <%= link_to "Clear", blogs_path %>
