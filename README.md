@@ -5,7 +5,7 @@ the blog index, and blog pages are backed by standard Rails resources.
 
 ## Stack
 
-- Ruby 3.2.0
+- Ruby 3.2.3
 - Rails 7.0.4
 - PostgreSQL
 - Puma
@@ -17,7 +17,7 @@ this repository.
 
 ## Prerequisites
 
-- Ruby 3.2.0, matching `.ruby-version`
+- Ruby 3.2.3, matching `.ruby-version`
 - Bundler
 - PostgreSQL reachable by Rails
 
@@ -59,7 +59,12 @@ Tests use Rails Minitest under `test/`.
 
 ## Lint
 
-No lint tool, config, gem, or documented lint command is currently checked in.
+```sh
+bundle exec rubocop
+```
+
+Uses RuboCop with Rails extensions for code quality and style. Configured in
+`.rubocop.yml`.
 
 ## Production Build
 
