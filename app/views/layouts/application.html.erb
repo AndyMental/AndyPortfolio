@@ -33,12 +33,13 @@
         <%= link_to "Home", root_path %>
         <%= link_to "Blog", blogs_path %>
       </nav>
-      <h1><%= content_for?(:header_title) ? content_for(:header_title) : (content_for?(:title) ? content_for(:title) : "AndyPortfolio") %></h1>
-      <p><%= yield_meta_tag(:description, "Andy Mental's portfolio — a Rails-backed blog companion to the andy-portfolio.com showcase.") %></p>
     </header>
 
     <main>
       <%= breadcrumbs %>
+      <% if content_for?(:header_title) %>
+        <h1><%= content_for(:header_title) %></h1>
+      <% end %>
       <%= yield %>
     </main>
 

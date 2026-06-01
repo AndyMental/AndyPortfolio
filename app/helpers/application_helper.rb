@@ -34,7 +34,7 @@ module ApplicationHelper
 
     content_tag(:nav, aria: { label: "Breadcrumb" }) do
       content_tag(:p) do
-        crumbs.join(" &nbsp;/&nbsp; ").html_safe
+        safe_join(crumbs, " &nbsp;/&nbsp; ".html_safe)
       end
     end
   end

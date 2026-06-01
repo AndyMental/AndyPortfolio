@@ -2,7 +2,12 @@ require "test_helper"
 
 class BlogSeoAndBreadcrumbsTest < ActionDispatch::IntegrationTest
   setup do
+    @original_token = ENV["BLOG_ADMIN_TOKEN"]
     @blog = Blog.create!(title: "SEO Test Post", body: "<p>This is a test post for SEO and breadcrumbs.</p>")
+  end
+
+  teardown do
+    ENV["BLOG_ADMIN_TOKEN"] = @original_token
   end
 
   test "show page has OpenGraph and Twitter tags" do
@@ -38,6 +43,15 @@ class BlogSeoAndBreadcrumbsTest < ActionDispatch::IntegrationTest
       assert_select "a[href='/']", text: "Home"
       assert_select "a[href='/blogs']", text: "Blog"
       assert_select "p", text: /Home.*Blog.*SEO Test Post/
+    end
+  end
+  
+  test "breadcrumbs correctly escape HTML in title" do
+    xss_blog = Blog.create!(title: "<script>alert('xss')</script>", body: "xss test")
+    get blog_path(xss_blog)
+    assert_response :success
+    assert_select "nav[aria-label='Breadcrumb'] p" do
+      assert_match /&lt;script&gt;alert\(&#39;xss&#39;\)&lt;\/script&gt;/, response.body
     end
   end
 
