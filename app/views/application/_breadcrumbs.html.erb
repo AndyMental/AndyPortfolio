@@ -1,8 +1,8 @@
 <nav class="breadcrumbs" aria-label="Breadcrumb">
   <p>
-    <%= link_to "Home", root_path %>
+    <%= link_to "Home", root_path, aria: { current: ("page" if current_page?(root_path)) } %>
     <% local_assigns[:links]&.each do |text, path| %>
-      &gt; <%= path ? link_to(text, path) : content_tag(:span, text) %>
+      <span aria-hidden="true">&gt;</span> <%= path ? link_to(text, path, aria: { current: ("page" if current_page?(path)) }) : content_tag(:span, text, aria: { current: "page" }) %>
     <% end %>
   </p>
 </nav>
