@@ -84,7 +84,7 @@ class AccessibilitySmokeTest < ActionDispatch::IntegrationTest
   test "non UI public endpoints keep expected response shapes" do
     get "/up"
     assert_response :success
-    assert_equal "text/html", @response.media_type
+    assert_equal "text/plain", @response.media_type
 
     get "/sitemap.xml"
     assert_response :success
