@@ -9,16 +9,16 @@ class OpenGraphMetaTest < ActionDispatch::IntegrationTest
     get root_path
     assert_response :success
     
-    assert_select "title", "AndyPortfolio"
+    assert_select "title", "Blog | AndyPortfolio"
     assert_select "meta[name='description'][content=?]", "Andy Mental's portfolio — a Rails-backed blog companion to the andy-portfolio.com showcase."
     
     assert_select "meta[property='og:type'][content='website']"
-    assert_select "meta[property='og:title'][content='AndyPortfolio']"
+    assert_select "meta[property='og:title'][content='Blog']"
     assert_select "meta[property='og:description'][content=?]", "Andy Mental's portfolio — a Rails-backed blog companion to the andy-portfolio.com showcase."
     assert_select "meta[property='og:site_name'][content='AndyPortfolio']"
     
     assert_select "meta[property='twitter:card'][content='summary_large_image']"
-    assert_select "meta[property='twitter:title'][content='AndyPortfolio']"
+    assert_select "meta[property='twitter:title'][content='Blog']"
   end
 
   test "blog show page has correct meta tags" do
