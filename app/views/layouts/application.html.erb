@@ -31,9 +31,9 @@
   <body>
     <header>
       <nav>
-        <%= link_to "Home", root_path %>
-        <%= link_to "About", about_path %>
-        <%= link_to "Blog", blogs_path %>
+        <%= nav_link_to "Home", root_path %>
+        <%= nav_link_to "About", about_path %>
+        <%= nav_link_to "Blog", blogs_path, active: :inclusive %>
       </nav>
     </header>
 
@@ -46,6 +46,10 @@
 
     <footer>
       <p>&copy; <%= Time.current.year %> Andy Mental. Built with Rails and Simple.css.</p>
+      <p class="social-links">
+        <%= link_to "LinkedIn", "https://www.linkedin.com/in/andymental/", target: "_blank", rel: "noopener noreferrer" %>
+        <%= link_to "GitHub", "https://github.com/AndyMental", target: "_blank", rel: "noopener noreferrer" %>
+      </p>
     </footer>
   </body>
 </html>
