@@ -1,6 +1,5 @@
 <% content_for :title, "Edit #{@blog.title.presence || "Blog"}" %>
-
-<h1>Editing blog</h1>
+<% content_for :header_title, "Editing Blog" %>
 
 <%= render "form", blog: @blog %>
 

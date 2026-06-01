@@ -1,12 +1,15 @@
-<div id="<%= dom_id blog %>">
-  <p>
-    <strong>Title:</strong>
-    <%= blog.title %>
-  </p>
+<article id="<%= dom_id blog %>">
+  <% if action_name == "show" %>
+    <h1><%= blog.title %></h1>
+  <% else %>
+    <h2><%= link_to blog.title, blog %></h2>
+  <% end %>
 
-  <p>
-    <strong>Body:</strong>
+  <div class="blog-body">
     <%= sanitize blog.body, tags: %w[p br strong em b i ul ol li a pre code], attributes: %w[href title rel target class] %>
+  </div>
+  
+  <p>
+    <small>Posted on <%= blog.created_at.to_date.to_fs(:long) %></small>
   </p>
-
-</div>
+</article>

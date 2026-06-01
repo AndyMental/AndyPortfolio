@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+
+nav[aria-label="Breadcrumb"] {
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
+nav[aria-label="Breadcrumb"] a {
+  text-decoration: none;
+}
+
+.blog-body {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+footer {
+  margin-top: 4rem;
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+  font-size: 0.8rem;
+  color: var(--text-light);
+}

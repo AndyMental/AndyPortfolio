@@ -1,4 +1,5 @@
 <% content_for :title, @blog.title %>
+<% content_for :description, strip_tags(@blog.body).truncate(160) %>
 
 <%= render "breadcrumbs", links: [["Blog", blogs_path], [@blog.title, nil]] %>
 
@@ -8,6 +9,8 @@
 
 <%= render @blog %>
 
+<hr>
+
 <div>
   <% if blog_admin? %>
     <%= link_to "Edit this blog", edit_blog_path(@blog) %> |
@@ -15,6 +18,7 @@
   <%= link_to "Back to blogs", blogs_path %>
 
   <% if blog_admin? %>
-    <%= button_to "Destroy this blog", @blog, method: :delete %>
+    <br><br>
+    <%= button_to "Destroy this blog", @blog, method: :delete, data: { confirm: "Are you sure?" } %>
   <% end %>
 </div>

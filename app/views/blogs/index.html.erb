@@ -1,12 +1,11 @@
 <% content_for :title, "Blog" %>
+<% content_for :description, "Read the latest updates and articles from Andy Mental." %>
 
 <%= render "breadcrumbs", links: [["Blog", nil]] %>
 
 <% if notice.present? %>
   <p style="color: green" role="status" aria-live="polite"><%= notice %></p>
 <% end %>
-
-<h1>Blogs</h1>
 
 <%= form_with url: blogs_path, method: :get, class: "search-form" do |form| %>
   <%= form.label :q, "Search blogs:" %>
@@ -26,13 +25,13 @@
   <div id="blogs">
     <% @blogs.each do |blog| %>
       <%= render blog %>
-      <p>
-        <%= link_to "Show this blog", blog %>
-      </p>
+      <hr>
     <% end %>
   </div>
 <% end %>
 
 <% if blog_admin? %>
-  <%= link_to "New blog", new_blog_path %>
+  <p>
+    <%= link_to "New blog", new_blog_path %>
+  </p>
 <% end %>
