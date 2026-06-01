@@ -5,7 +5,7 @@ Repo-local guidance for coding agents. Only commands and conventions observable 
 ## Stack (detected from repo files)
 
 - Ruby on Rails application.
-- Ruby version pinned to `3.2.0` (see `.ruby-version`). Environments with `3.2.3` may require a `Gemfile` adjustment to `ruby ">= 3.2.0"`.
+- Ruby version pinned to `3.2.0` (see `.ruby-version`).
 - Rails `~> 7.0.4`, Sprockets, importmap-rails, Turbo, Stimulus, Jbuilder (see `Gemfile`, `Gemfile.lock`).
 - Web server: Puma `~> 5.0`.
 - Database: PostgreSQL (`pg ~> 1.1`). Development DB name `AndyPortfolio_development` (see `config/database.yml`).
