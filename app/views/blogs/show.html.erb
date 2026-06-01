@@ -1,4 +1,5 @@
 <% content_for :title, @blog.title %>
+<% content_for :og_type, "article" %>
 
 <% if notice.present? %>
   <p style="color: green" role="status" aria-live="polite"><%= notice %></p>
