@@ -1,10 +1,16 @@
 <article id="<%= dom_id blog %>">
+  <% search_terms = params[:q].to_s.split(/\s+/).reject(&:blank?) %>
+  <% allowed_body_tags = %w[p br strong em b i ul ol li a pre code] %>
+  <% allowed_body_attributes = %w[href title rel target class] %>
+
   <% unless action_name == "show" %>
-    <h2><%= link_to blog.title, blog %></h2>
+    <% title = search_terms.present? ? highlight(blog.title, search_terms, highlighter: "<mark>\\1</mark>") : blog.title %>
+    <h2><%= link_to title, blog %></h2>
   <% end %>
 
   <div class="blog-body">
-    <%= sanitize blog.body, tags: %w[p br strong em b i ul ol li a pre code], attributes: %w[href title rel target class] %>
+    <% body = sanitize blog.body, tags: allowed_body_tags, attributes: allowed_body_attributes %>
+    <%= search_terms.present? ? highlight(body, search_terms, highlighter: "<mark>\\1</mark>", sanitize: false) : body %>
   </div>
   
   <p>
