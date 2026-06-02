@@ -17,7 +17,7 @@ class BlogsController < ApplicationController
     end
   end
 
-  # GET /blogs/1 or /blogs/1.json
+  # GET /blogs/post-slug or /blogs/post-slug.json
   def show
   end
 
@@ -26,7 +26,7 @@ class BlogsController < ApplicationController
     @blog = Blog.new
   end
 
-  # GET /blogs/1/edit
+  # GET /blogs/post-slug/edit
   def edit
   end
 
@@ -45,7 +45,7 @@ class BlogsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /blogs/1 or /blogs/1.json
+  # PATCH/PUT /blogs/post-slug or /blogs/post-slug.json
   def update
     respond_to do |format|
       if @blog.update(blog_params)
@@ -58,7 +58,7 @@ class BlogsController < ApplicationController
     end
   end
 
-  # DELETE /blogs/1 or /blogs/1.json
+  # DELETE /blogs/post-slug or /blogs/post-slug.json
   def destroy
     @blog.destroy
 
@@ -71,7 +71,7 @@ class BlogsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_blog
-      @blog = Blog.find(params[:id])
+      @blog = Blog.find_by!(slug: params[:id])
     end
 
     # Only allow a list of trusted parameters through.
